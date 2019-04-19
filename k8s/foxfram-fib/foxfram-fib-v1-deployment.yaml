@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  fib-deploy
+  namespace: default
+  labels:
+    app: fib
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fib
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: fib
+        version: v1
+    spec:
+      containers:
+      - image:  moficodes/foxfram-fib:0.0.1
+        name:  fib
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "128Mi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        ports:
+        - containerPort:  8080
+          name: http
+      restartPolicy: Always
+      
