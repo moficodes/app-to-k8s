@@ -6,3 +6,14 @@ That’s where Docker came in, however, Docker was not enough to run our applica
   
 In this workshop we will take an app we want to build and will go through the entire lifecycle \(in a smaller scale\) from writing the app, to containerizing it, to getting it to docker, and out to the entire world. We will see each of the parts in detail so we can take the learning and apply it to any of our projects.
 
+## Lab Instructors
+
+* Mofizur Rahman, IBM Developer Advocate \([@moficodes](https://twitter.com/moficodes)\)
+
+## Agenda
+
+* 7:00 PM - 7:20 PM Setup
+* 7:20 PM - 7:40 PM Kubernetes Shallow Dive?
+* 7:40 PM - 8:40 PM Workshop
+* 8:40 PM - 9:00 Q/A
+
