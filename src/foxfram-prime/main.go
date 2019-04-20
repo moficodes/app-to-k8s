@@ -2,8 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"foxfram-factorial/factorial"
-
+	"foxfram-prime/prime"
 	"math/rand"
 	"net/http"
 	"os"
@@ -59,8 +58,8 @@ func HealthHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("OK!"))
 }
 
-// FactorialHandler ...
-func FactorialHandler(w http.ResponseWriter, r *http.Request) {
+// PrimeHandler ...
+func PrimeHandler(w http.ResponseWriter, r *http.Request) {
 	numStr := mux.Vars(r)["number"]
 
 	num, err := strconv.Atoi(numStr)
@@ -68,7 +67,7 @@ func FactorialHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	s, err := factorial.Factorial(num)
+	s, err := prime.Primes(num)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -87,6 +86,6 @@ func main() {
 
 	r.Path("/env").Methods("GET").HandlerFunc(EnvHandler)
 	r.Path("/health").Methods("GET").HandlerFunc(HealthHandler)
-	r.Path("/factorial/{number}").Methods("GET").HandlerFunc(FactorialHandler)
+	r.Path("/primes/{number}").Methods("GET").HandlerFunc(PrimeHandler)
 	http.ListenAndServe(":8080", r)
 }
