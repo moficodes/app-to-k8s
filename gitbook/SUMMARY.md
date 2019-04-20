@@ -1,4 +1,4 @@
 # Table of contents
 
-* [Initial page](gitbook/readme.md)
+* [Introduction](gitbook/readme.md)
 
