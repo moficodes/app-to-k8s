@@ -1,4 +1,4 @@
-# App Idea to Kubernetes
+# Kubernetes Shallow Dive
 
 [![](https://camo.githubusercontent.com/d4b4dc1fa923487e002f26f13b6cff6156cb77f9/68747470733a2f2f70617065722d6174746163686d656e74732e64726f70626f782e636f6d2f735f444141443230304443383041393831303637463946363445364332444432334444454131303837323642423846353930464330453146373433353332424433415f313535353733363839373237315f31333632393430382e706e67)](https://camo.githubusercontent.com/d4b4dc1fa923487e002f26f13b6cff6156cb77f9/68747470733a2f2f70617065722d6174746163686d656e74732e64726f70626f782e636f6d2f735f444141443230304443383041393831303637463946363445364332444432334444454131303837323642423846353930464330453146373433353332424433415f313535353733363839373237315f31333632393430382e706e67)
 
@@ -18,7 +18,7 @@ Kubernetes is an abstraction on the infrastructure that helps automate many impo
 
 I still don’t think I am anywhere closer to defining what K8s actually is. I don’t think there is a short and concise definition for it. Instead lets talk about how K8s came to be, what it is made of and what problems it solves and maybe we will have a clearer view about the purpose of K8s.
 
-### Why do I need Kubernetes and what can it do?
+## Why do I need Kubernetes and what can it do?
 
 Kubernetes has a number of features. It can be thought of as:
 
@@ -28,7 +28,7 @@ Kubernetes has a number of features. It can be thought of as:
 
 Kubernetes provides a **container-centric** management environment. It orchestrates computing, networking, and storage infrastructure on behalf of user workloads. This provides much of the simplicity of Platform as a Service \(PaaS\) with the flexibility of Infrastructure as a Service \(IaaS\), and enables portability across infrastructure providers.
 
-### What Kubernetes is not
+## What Kubernetes is not
 
 Kubernetes is not a traditional, all-inclusive PaaS \(Platform as a Service\) system. Since Kubernetes operates at the container level rather than at the hardware level, it provides some generally applicable features common to PaaS offerings, such as deployment, scaling, load balancing, logging, and monitoring. However, Kubernetes is not monolithic, and these default solutions are optional and pluggable. Kubernetes provides the building blocks for building developer platforms, but preserves user choice and flexibility where it is important. Kubernetes:
 
@@ -41,7 +41,7 @@ Kubernetes is not a traditional, all-inclusive PaaS \(Platform as a Service\) sy
 
 Additionally, Kubernetes is not a mere _orchestration system_. In fact, it eliminates the need for orchestration. The technical definition of _orchestration_ is execution of a defined workflow: first do A, then B, then C. In contrast, Kubernetes is comprised of a set of independent, composable control processes that continuously drive the current state towards the provided desired state. It shouldn’t matter how you get from A to C. Centralized control is also not required. This results in a system that is easier to use and more powerful, robust, resilient, and extensible.
 
-### Why containers
+## Why containers
 
 Looking for reasons why you should be using containers
 
@@ -94,15 +94,15 @@ Kubernetes Infrastructure defines a resource for every purpose. Each resource is
 
 ![](.gitbook/assets/image%20%283%29.png)
 
-### Hardware
+## Hardware
 
-**Node**
+### **Node**
 
 ![](.gitbook/assets/image%20%284%29.png)
 
 A [node](https://kubernetes.io/docs/concepts/architecture/nodes/) is the smallest unit of computing hardware in Kubernetes. It is a representation of a single machine in your cluster. In most production systems, a node will likely be either a physical machine in a datacenter, or virtual machine hosted on a cloud provider like [Google Cloud Platform](https://cloud.google.com/). Don’t let conventions limit you, however; in theory, you can make a node out of [almost](https://twitter.com/jkrippy/status/932800484703862784) [anything](https://blog.hypriot.com/post/setup-kubernetes-raspberry-pi-cluster/). Thinking of a machine as a “node” allows us to insert a layer of abstraction. Now, instead of worrying about the unique characteristics of any individual machine, we can instead simply view each machine as a set of CPU and RAM resources that can be utilized. In this way, any machine can substitute any other machine in a Kubernetes cluster.
 
-**The Cluster**
+### **The Cluster**
 
 ![](.gitbook/assets/image%20%285%29.png)
 
@@ -116,27 +116,27 @@ Although working with individual nodes can be useful, it’s not the Kubernetes 
 
 To store data permanently, Kubernetes uses [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/). While the CPU and RAM resources of all nodes are effectively pooled and managed by the cluster, persistent file storage is not. Instead, local or cloud drives can be attached to the cluster as a Persistent Volume. This can be thought of as plugging an external hard drive in to the cluster. Persistent Volumes provide a file system that can be mounted to the cluster, without being associated with any particular node.
 
-### Software
+## Software
 
-**Containers**
+### **Containers**
 
 [![](https://camo.githubusercontent.com/29690b72d0d0be8349cf6965fbc67395bb050535/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a494c696e7a7a4d646e44356f513654753262664267512e706e67)](https://camo.githubusercontent.com/29690b72d0d0be8349cf6965fbc67395bb050535/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f313630302f312a494c696e7a7a4d646e44356f513654753262664267512e706e67)[![](https://camo.githubusercontent.com/b1285eef90c7a9f60cd200abe32af08b8710424a/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323030302f312a494c696e7a7a4d646e44356f513654753262664267512e706e67)](https://camo.githubusercontent.com/b1285eef90c7a9f60cd200abe32af08b8710424a/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323030302f312a494c696e7a7a4d646e44356f513654753262664267512e706e67)
 
 Programs running on Kubernetes are packaged as [Linux containers](https://www.docker.com/what-container). Containers are a widely accepted standard, so there are already many [pre-built images](https://hub.docker.com/explore/) that can be deployed on Kubernetes. Containerization allows you to create self-contained Linux execution environments. Any program and all its dependencies can be bundled up into a single file and then shared on the internet. Anyone can download the container and deploy it on their infrastructure with very little setup required. Creating a container can be done programmatically, allowing powerful [CI and CD](http://blog.sonatype.com/achieving-ci/cd-with-kubernetes) pipelines to be formed. Multiple programs can be added into a single container, but you should limit yourself to one process per container if at all possible. It’s better to have many small containers than one large one. If each container has a tight focus, updates are easier to deploy and issues are easier to diagnose.
 
-**Pod**
+### **Pod**
 
 ![](https://cdn-images-1.medium.com/max/1600/1*8OD0MgDNu3Csq0tGpS8Obg.png)
 
 Unlike other systems you may have used in the past, Kubernetes doesn’t run containers directly; instead it wraps one or more containers into a higher-level structure called a [pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/). Any containers in the same pod will share the same resources and local network. Containers can easily communicate with other containers in the same pod as though they were on the same machine while maintaining a degree of isolation from others. Pods are used as the unit of replication in Kubernetes. If your application becomes too popular and a single pod instance can’t carry the load, Kubernetes can be configured to deploy new replicas of your pod to the cluster as necessary. Even when not under heavy load, it is standard to have multiple copies of a pod running at any time in a production system to allow load balancing and failure resistance. Pods can hold multiple containers, but you should limit yourself when possible. Because pods are scaled up and down as a unit, all containers in a pod must scale together, regardless of their individual needs. This leads to wasted resources and an expensive bill. To resolve this, pods should remain as small as possible, typically holding only a main process and its tightly-coupled helper containers \(these helper containers are typically referred to as “side-cars”\).
 
-**Deployment**
+### **Deployment**
 
 ![](https://cdn-images-1.medium.com/max/1600/1*iTAVk3glVD95hb-X3HiCKg.png)
 
 Although pods are the basic unit of computation in Kubernetes, they are not typically directly launched on a cluster. Instead, pods are usually managed by one more layer of abstraction: the [deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/). A deployment’s primary purpose is to declare how many replicas of a pod should be running at a time. When a deployment is added to the cluster, it will automatically spin up the requested number of pods, and then monitor them. If a pod dies, the deployment will automatically re-create it. Using a deployment, you don’t have to deal with pods manually. You can just declare the desired state of the system, and it will be managed for you automatically.
 
-**Ingres**
+### **Ingress**
 
 \*\*\*\*
 
