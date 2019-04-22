@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](gitbook/readme.md)
+* [Setup](setup.md)
 * [Kubernetes Shallow Dive](app-idea-to-kubernetes.md)
 * [Workshop](workshop/README.md)
   * [The Application](workshop/the-application.md)
