@@ -2,4 +2,11 @@
 
 * [Introduction](gitbook/readme.md)
 * [Kubernetes Shallow Dive](app-idea-to-kubernetes.md)
+* [Workshop](workshop/README.md)
+  * [The Application](workshop/the-application.md)
+  * [Containerize](workshop/containerize.md)
+  * [Get it to Kubernetes](workshop/get-it-to-kubernetes.md)
+  * [Get it to Kubernetes Right](workshop/get-it-to-kubernetes-right.md)
+  * [Kubernetes Best Practices](workshop/kubernetes-best-practices.md)
+* [Next Steps?](next-steps.md)
 
