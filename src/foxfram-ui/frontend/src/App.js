@@ -70,7 +70,7 @@ function App() {
 
       <div className="numbers">
         {lists[activeButton].map((item, i) => (
-          <span>{item}</span>
+          <span key={i} className="number">{item}</span>
         ))}
       </div>
     </div>
