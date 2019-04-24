@@ -15,3 +15,5 @@ Finally Thank your for joining the workshop today.
 
 You can find me on [Twitter](https://twitter.com/moficodes) [@moficodes ](https://twitter.com/moficodes)
 
+If there is anything specific you would like to learn let me know and I will see if we can run a meetup or workshop on it. 
+
