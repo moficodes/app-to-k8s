@@ -14,6 +14,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type resp struct {
+	Data []string `json:"data"`
+}
+
 var (
 	// for Health
 	// random chance that the healthcheck fails (for demo of healthcheck)
@@ -73,7 +77,16 @@ func FactorialHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	data, err := json.MarshalIndent(s, "", "")
+
+	resp := resp{}
+	resp.Data = make([]string, len(s.Data))
+
+	for i, v := range s.Data {
+		resp.Data[i] = v.String()
+	}
+
+	data, err := json.MarshalIndent(resp, "", "")
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

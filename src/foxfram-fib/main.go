@@ -11,7 +11,12 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
+
+type resp struct {
+	Data []string `json:"data"`
+}
 
 var (
 	// for Health
@@ -72,7 +77,14 @@ func FibHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	data, err := json.MarshalIndent(s, "", "")
+	resp := resp{}
+	resp.Data = make([]string, len(s.Data))
+
+	for i, v := range s.Data {
+		resp.Data[i] = v.String()
+	}
+
+	data, err := json.MarshalIndent(resp, "", "")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -87,5 +99,8 @@ func main() {
 	r.Path("/env").Methods("GET").HandlerFunc(EnvHandler)
 	r.Path("/health").Methods("GET").HandlerFunc(HealthHandler)
 	r.Path("/fib/{number}").Methods("GET").HandlerFunc(FibHandler)
-	http.ListenAndServe(":8080", r)
+
+	handler := cors.Default().Handler(r)
+
+	http.ListenAndServe(":8080", handler)
 }

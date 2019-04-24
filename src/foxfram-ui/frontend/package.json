@@ -1,8 +1,9 @@
 {
-  "name": "frontend",
+  "name": "mofi-sucks",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bignumber.js": "^8.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0"

@@ -1,26 +1,102 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.bigWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f7f7f7;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.numbers {
+  font-size: 28px;
+  font-family: monospace;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 133px;
+  bottom: 0px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.textwrapper {
+  background-color: white;
+  margin: 20px;
+  /* height: 40px; */
+  width: 500px;
+  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+  /* border-radius: 4px; */
+}
+
+.textwrapper2 {
+  display: flex;
+}
+
+.textwrapper:hover {
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+.textbox {
+  width: 100%;
+  /* width: calc(100% - 200px); */
+  height: 46px;
+  padding: 0 24px;
+  /* height: 100%; */
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.submit {
+  border-radius: 50%;
+  align-self: center;
+  width: 32px;
+  height: 26px;
+  margin-right: 12px;
+}
+
+.submit:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.submit:active {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.tabwrapper {
+  display: flex;
+  /* justify-content: center; */
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.tab {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 14px;
+  flex: 1;
+}
+
+.tab.active {
+  background: cornflowerblue;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.submit {
+  fill: rgba(0, 0, 0, 0.6);
 }
 
 @keyframes App-logo-spin {
