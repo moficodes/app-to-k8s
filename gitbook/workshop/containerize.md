@@ -28,7 +28,9 @@ Docker by itself could be one whole workshop \(it should be\). But we aren't her
 
 ### Image Registry
 
-The docker images we build needs to have a space to live. You can use both public and private registry. For your super awesome secret app you probably want a private registry. With your IBM Cloud account you actually get a private image registry for free. But for todays workshop we will be using docker hub.
+The docker images we build needs to have a space to live. You can use both public and private registry. For your super awesome secret app you probably want a private registry. With your IBM Cloud account you actually get a private image registry for free. But for todays workshop we will be using docker hub. More specifically we will use images I already pre-created. But that should not stop us from looking at the process of creating our own. 
+
+
 
   
 
