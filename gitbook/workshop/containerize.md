@@ -24,6 +24,12 @@ And Canonical, developers of the [Ubuntu](https://www.webopedia.com/TERM/U/Ubunt
 
 For our workshop we are using docker. 
 
+Docker by itself could be one whole workshop \(it should be\). But we aren't here today to learn docker. So I will quickly go over the main things we need to know for our workshop. 
+
+### Image Registry
+
+The docker images we build needs to have a space to live. You can use both public and private registry. For your super awesome secret app you probably want a private registry. With your IBM Cloud account you actually get a private image registry for free. But for todays workshop we will be using docker hub.
+
   
 
 
