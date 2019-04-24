@@ -8,7 +8,7 @@ Although you probably setup you local system at some point anyway but we will sa
 
 [Cloud Shell](https://cloudshell-console-devadv.us-south.cf.cloud.ibm.com/)
 
-Passcode: `kube 101`
+Passcode: `kube101`
 
 You can login using your IBM Cloud Login
 
