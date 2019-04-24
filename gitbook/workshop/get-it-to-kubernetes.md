@@ -105,6 +105,14 @@ A _Deployment_ controller provides declarative updates for [Pods](https://kubern
 
 You describe a _desired state_ in a Deployment object, and the Deployment controller changes the actual state to the desired state at a controlled rate. You can define Deployments to create new ReplicaSets, or to remove existing Deployments and adopt all their resources with new Deployments.
 
+The quick and dirty way to create a deployment is to use the run command.
+
+```text
+kubectl run nginx --image=nginx:1.10 --replicas=3
+```
+
+But this is not preferred because its not reproducible. We should use a yaml file and check it in version control. 
+
 ```text
 apiVersion: apps/v1
 kind: Deployment
