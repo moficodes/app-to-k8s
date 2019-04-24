@@ -141,6 +141,11 @@ This is the folder structure
 
 * Create ephemeral containers
 * Exclude with .dockerignore
+* Use multi-stage builds
+* Don’t install unnecessary packages
+* Minimize the number of layers
+* Decouple applications
+* Leverage build cache
 
 
 
