@@ -16,6 +16,12 @@ cd app-to-k8s/k8s/all-deployment-svc/
 kubectl apply -f .
 ```
 
+Go back to the root of the folder.
+
+```text
+cd ../..
+```
+
 You should an output like
 
 ```text
@@ -217,4 +223,46 @@ IBM Cloud Container Registry is adopting new icr.io domain names to align with t
 
 OK
 ```
+
+From the root of the folder you need to go into each of the src folders.
+
+```text
+cd src/foxfram-fib
+ibmcloud cr build mofi-workshop/<number>-fib:0.0.1 .
+```
+
+`ibmcloud cr build` command builds and pushes the image into the `mofi-workshop` namespace. 
+
+```text
+cd ../foxfram-prime
+ibmcloud cr build mofi-workshop/<number>-prime:0.0.1 .
+```
+
+```text
+cd ../foxfram-factorial
+ibmcloud cr build mofi-workshop/<number>-factorial:0.0.1 .
+```
+
+```text
+cd ../foxfram-ui
+ibmcloud cr build mofi-workshop/<number>-ui:0.0.1 .
+```
+
+Once all the images have been built without any error. We can then go take a look if they are actually there.
+
+```text
+ibmcloud cr images | grep mofi-workshop/<number>
+```
+
+Once you have all 4 images created, time  to update our deployments.
+
+```text
+cd k8s/all-deployment-svc
+```
+
+```text
+nano foxfram-fib-v1-deployment.yaml
+```
+
+
 
