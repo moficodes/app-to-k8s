@@ -264,5 +264,32 @@ cd k8s/all-deployment-svc
 nano foxfram-fib-v1-deployment.yaml
 ```
 
+change the following
+
+```text
+from
+- image:  moficodes/foxfram-fib:0.0.5
+to
+- image:  us.icr.io/mofi-workshop/01-fib:0.0.1
+```
+
+Do similar changes for  
+
+```text
+foxfram-fact-v1-deployment.yaml
+foxfram-prime-v1-deployment.yaml
+foxfram-ui-v1-deployment.yaml
+```
+
+once all the files are updated with the new images.
+
+Run
+
+```text
+kubectl apply -f .
+```
+
+If everything goes well our app should be up and running.
+
 
 
