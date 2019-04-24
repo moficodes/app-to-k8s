@@ -157,3 +157,64 @@ You can define liveness and readiness probes to be
 
 Liveness and Readiness probes are super useful when you are waiting for some process to start before you start serving request or if a crucial component of your app goes away.
 
+## Check the App
+
+```text
+kubectl get svc
+
+NAME                TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+factorial-service   ClusterIP      172.21.140.45    <none>        80/TCP         68m
+fib-service         ClusterIP      172.21.24.38     <none>        80/TCP         68m
+kubernetes          ClusterIP      172.21.0.1       <none>        443/TCP        6d10h
+prime-service       ClusterIP      172.21.164.123   <none>        80/TCP         68m
+ui-service          LoadBalancer   172.21.80.239    xxx.xx.xx.x   80:32103/TCP   68m
+```
+
+You should see a external ip for the UI service. From your browser go to that url.
+
+> Don't use your phone or Safari browser. The UI for some reason does not look right there. Will fix this in a future version.
+
+
+
+## Rolling our OWN
+
+We used the image I made and made public via docker hub. While it is easy, it is neither safe nor the best practice.
+
+Let's see how we can build our images and store it in a private registry.
+
+I created a namespace `mofi-workshop` We will all build our images and push there. To avoid naming collision,
+
+Use the following format
+
+```text
+mofi-workshop/<Number of Your cluster>-<service-name>:<Tag>
+```
+
+For example I have the cluster `app-to-k8s-workshop01` 
+
+So for fib service my image name becomes
+
+```text
+mofi-workshop/01-fib:0.0.1
+```
+
+Run the following.
+
+```text
+ibmcloud cr login
+```
+
+```text
+Logging in to 'registry.ng.bluemix.net'...
+Logged in to 'registry.ng.bluemix.net'.
+
+IBM Cloud Container Registry is adopting new icr.io domain names to align with the rebranding of IBM Cloud for a better user experience. The existing bluemix.net domain names are deprecated, but you can continue to use them for the time being, as an unsupported date will be announced later. For more information about registry domain names, see https://cloud.ibm.com/docs/services/Registry?topic=registry-registry_overview#registry_regions_local
+
+Logging in to 'us.icr.io'...
+Logged in to 'us.icr.io'.
+
+IBM Cloud Container Registry is adopting new icr.io domain names to align with the rebranding of IBM Cloud for a better user experience. The existing bluemix.net domain names are deprecated, but you can continue to use them for the time being, as an unsupported date will be announced later. For more information about registry domain names, see https://cloud.ibm.com/docs/services/Registry?topic=registry-registry_overview#registry_regions_local
+
+OK
+```
+
