@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name:  fib-service
+  name:  factorial-service
   labels:
-    app: fib
+    app: factorial
   namespace: default
 spec:
   selector:
-    app:  fib
+    app:  factorial
   ports:
   - name:  http
     port:  80

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  fib-deploy
+  name:  prime-deploy
   namespace: default
   labels:
-    app: fib
+    app: prime
     version: v1
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: fib
+      app: prime
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,11 +19,11 @@ spec:
   template:
     metadata:
       labels:
-        app: fib
+        app: prime
         version: v1
     spec:
       containers:
-      - image:  moficodes/foxfram-fib:0.0.5
+      - image:  moficodes/foxfram-prime:0.0.2
         name:  fib
         imagePullPolicy: Always
         resources:

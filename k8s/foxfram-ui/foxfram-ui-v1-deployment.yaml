@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  fib-deploy
+  name:  foxfram-ui
   namespace: default
   labels:
-    app: fib
+    app: foxfram
     version: v1
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: fib
+      app: foxfram
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -19,12 +19,12 @@ spec:
   template:
     metadata:
       labels:
-        app: fib
+        app: foxfram
         version: v1
     spec:
       containers:
-      - image:  moficodes/foxfram-fib:0.0.5
-        name:  fib
+      - image:  moficodes/foxfram-ui:0.0.5
+        name:  foxfram
         imagePullPolicy: Always
         resources:
           requests:
@@ -33,12 +33,6 @@ spec:
           limits:
             cpu: "250m"
             memory: "128Mi"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 3
-          periodSeconds: 3
         ports:
         - containerPort:  8080
           name: http
