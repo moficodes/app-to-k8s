@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  prime-service
+  labels:
+    app: prime
+  namespace: default
+spec:
+  selector:
+    app:  prime
+  ports:
+  - name:  http
+    port:  80
+    targetPort:  8080

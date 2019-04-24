@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  factorial-service
+  labels:
+    app: factorial
+  namespace: default
+spec:
+  selector:
+    app:  factorial
+  ports:
+  - name:  http
+    port:  80
+    targetPort:  8080

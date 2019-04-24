@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  foxfram-ui
+  namespace: default
+  labels:
+    app: foxfram
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: foxfram
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: foxfram
+        version: v1
+    spec:
+      containers:
+      - image:  moficodes/foxfram-ui:0.0.5
+        name:  foxfram
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "128Mi"
+        ports:
+        - containerPort:  8080
+          name: http
+      restartPolicy: Always
+      

@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  ui-service
+  labels:
+    app: foxfram
+  namespace: default
+spec:
+  selector:
+    app:  foxfram
+  type:  LoadBalancer
+  ports:
+  - name:  http
+    port:  80
+    targetPort:  8080

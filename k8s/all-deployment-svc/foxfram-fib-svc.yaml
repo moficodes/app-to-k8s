@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  fib-service
+  labels:
+    app: fib
+  namespace: default
+spec:
+  selector:
+    app:  fib
+  ports:
+  - name:  http
+    port:  80
+    targetPort:  8080
