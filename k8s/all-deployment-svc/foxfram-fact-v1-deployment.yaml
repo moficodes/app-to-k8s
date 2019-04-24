@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - image:  moficodes/foxfram-factorial:0.0.2
-        name:  fib
+        name:  factorial
         imagePullPolicy: Always
         resources:
           requests:

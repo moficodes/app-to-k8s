@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - image:  moficodes/foxfram-prime:0.0.2
-        name:  fib
+        name:  prime
         imagePullPolicy: Always
         resources:
           requests:
