@@ -146,6 +146,9 @@ This is the folder structure
 * Minimize the number of layers
 * Decouple applications
 * Leverage build cache
+* Make small containers
+* Use the least privileged access.
+* Don't store sensitive information.
 
 
 
