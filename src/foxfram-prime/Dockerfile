@@ -1,53 +1,40 @@
-# Accept the Go version for the image to be set as a build argument.
-# Default to Go 1.11
-ARG GO_VERSION=1.12
+# start with a base image
+FROM ubuntu:xenial
 
-# First stage: build the executable.
-FROM golang:${GO_VERSION}-alpine AS builder
+RUN apt-get update -y
+RUN apt-get upgrade -y
 
-# Create the user and group files that will be used in the running container to
-# run the process as an unprivileged user.
-RUN mkdir /user && \
-    echo 'nobody:x:65534:65534:nobody:/:' > /user/passwd && \
-    echo 'nobody:x:65534:' > /user/group
+# need some things installed
+RUN apt-get install -y wget
+RUN apt-get install -y build-essential
+RUN apt-get install -y ca-certificates
+RUN apt-get install -y git
 
-# Install the Certificate-Authority certificates for the app to be able to make
-# calls to HTTPS endpoints.
-# Git is required for fetching the dependencies.
-RUN apk add --no-cache git
+RUN wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
+RUN tar -xvf go1.12.6.linux-amd64.tar.gz
+RUN mv go /usr/local
 
-# Set the working directory outside $GOPATH to enable the support for modules.
+ENV GOROOT /usr/local/go
+
+RUN mkdir go
+
+RUN GOPATH=$HOME/go
+
+ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
+
 WORKDIR /src
 
-# Fetch dependencies first; they are less susceptible to change on every build
-# and will therefore be cached for speeding up the next build
 COPY ./go.mod ./go.sum ./
+
 RUN go mod download
 
-# Import the code from the context.
 COPY ./ ./
 
-# Build the executable to `/app`. Mark the build as statically linked.
-RUN CGO_ENABLED=0 go build \
-    -installsuffix 'static' \
-    -o /app .
+RUN go build -o /app .
 
-# Final stage: the running container.
-FROM scratch AS final
-
-# Import the user and group files from the first stage.
-COPY --from=builder /user/group /user/passwd /etc/
-
-# Import the compiled executable from the first stage.
-COPY --from=builder /app /app
-
-# Declare the port on which the webserver will be exposed.
-# As we're going to run the executable as an unprivileged user, we can't bind
-# to ports below 1024.
 EXPOSE 8080
 
-# Perform any further action as an unprivileged user.
-USER nobody:nobody
+ENTRYPOINT [ "/app" ]
 
-# Run the compiled binary.
-ENTRYPOINT ["/app"]
+
+
