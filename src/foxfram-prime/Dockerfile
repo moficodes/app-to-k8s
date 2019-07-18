@@ -13,6 +13,7 @@ RUN apt-get install -y git
 RUN wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
 RUN tar -xvf go1.12.6.linux-amd64.tar.gz
 RUN mv go /usr/local
+RUN rm go1.12.6.linux-amd64.tar.gz
 
 ENV GOROOT /usr/local/go
 
