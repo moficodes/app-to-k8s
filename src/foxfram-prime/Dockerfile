@@ -1,18 +1,16 @@
 # start with a base image
 FROM ubuntu:xenial
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apt-get -qq update -y && apt-get -qq upgrade -y
 
 # need some things installed
-RUN apt-get install -y wget
-RUN apt-get install -y build-essential
-RUN apt-get install -y ca-certificates
-RUN apt-get install -y git
+RUN apt-get -qq install -y wget build-essential ca-certificates git
+
 
 RUN wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
 RUN tar -xvf go1.12.6.linux-amd64.tar.gz
 RUN mv go /usr/local
+RUN rm go1.12.6.linux-amd64.tar.gz
 
 ENV GOROOT /usr/local/go
 
