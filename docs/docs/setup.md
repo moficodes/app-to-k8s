@@ -20,7 +20,7 @@ To get a cluster, head to the [Get Cluster](https://app-to-k8s.mybluemix.net/) t
 
 Use the key `k8s_rocks_2019` and input the email you used to sign up for IBM Cloud. Ensure that US East is chosen as we've created clusters in the Washington data center for this lab.
 
-![](.gitbook/assets/screen-shot-2019-04-24-at-1.39.35-am.png)
+<img alt="Setup" src={useBaseUrl('img/grant-cluster.png')} />
 
 ## Clone The Repo
 
