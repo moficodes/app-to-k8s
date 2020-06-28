@@ -1,8 +1,8 @@
 module.exports = {
   title: 'App to K8s',
   tagline: 'Interactive workshop for learning k8s basics',
-  url: 'https://moficodes.github.com',
-  baseUrl: '/app-to-k8s/',
+  url: 'https://k8s.moficodes.com',
+  baseUrl: '/',
   favicon: 'img/k8s-icon.png',
   organizationName: 'moficodes', // Usually your GitHub org/user name.
   projectName: 'app-to-k8s', // Usually your repo name.
