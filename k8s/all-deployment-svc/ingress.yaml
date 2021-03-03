@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: foxfram-ingress
+spec:
+  tls:
+    - hosts: 
+        - foxfram.kf-mofi-vpc-442dbba0442be6c8c50f31ed96b00601-0000.us-south.containers.appdomain.cloud
+      secretName: kf-mofi-vpc-442dbba0442be6c8c50f31ed96b00601-0000
+  rules:
+    - host: foxfram.kf-mofi-vpc-442dbba0442be6c8c50f31ed96b00601-0000.us-south.containers.appdomain.cloud
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: ui-service
+              servicePort: 80
